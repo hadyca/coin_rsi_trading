@@ -1,11 +1,11 @@
 "use client";
 
-import { getData } from "@/lib/data";
+import { app } from "@/lib/app";
 import { useEffect } from "react";
 
 export default function Page() {
   useEffect(() => {
-    getData();
+    app();
     // const intervalId = setInterval(getData, 5000);
     // return () => clearInterval(intervalId);
   }, []);
