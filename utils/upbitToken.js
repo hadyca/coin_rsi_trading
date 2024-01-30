@@ -6,20 +6,16 @@ import querystring from "querystring";
 const access_key = process.env.UPBIT_OPEN_API_ACCESS_KEY;
 const secret_key = process.env.UPBIT_OPEN_API_SECRET_KEY;
 
-export function up_getAuth_noParams() {
+export function up_getToken_noParams() {
   const payload = {
     access_key: access_key,
     nonce: v4(),
   };
   const token = jwt.sign(payload, secret_key);
-  const auth = {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  };
-  return auth;
+  return token;
 }
 
-export function up_getAuth_params(params) {
+export function up_getToken_params(params) {
   const query = querystring.stringify(params);
 
   const hash = crypto.createHash("sha512");
@@ -33,11 +29,5 @@ export function up_getAuth_params(params) {
   };
 
   const token = jwt.sign(payload, secret_key);
-
-  const auth = {
-    headers: { Authorization: `Bearer ${token}` },
-    cache: "no-store",
-  };
-
-  return auth;
+  return { query, token };
 }
