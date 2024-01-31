@@ -1,4 +1,4 @@
-const hmacSHA512 = require("crypto-js/hmac-sha512");
+import cryptojsHmacSHA512 from "crypto-js/hmac-sha512";
 
 export default function bithumbHeader(obj) {
   const api_private_info = {
@@ -18,10 +18,10 @@ export default function bithumbHeader(obj) {
     let nNonce = new Date().getTime();
     let spliter = String.fromCharCode(0);
     return {
-      "Content-Type": "multipart/form-data",
+      "Content-Type": "application/x-www-form-urlencoded",
       "Api-Key": api_private_info.apiKey,
       "Api-Sign": base64_encode(
-        hmacSHA512(
+        cryptojsHmacSHA512(
           endPoint + spliter + str_q + spliter + nNonce,
           api_private_info.secretKey
         ).toString()
