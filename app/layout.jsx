@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "김제형의 코인 rsi 자동매매",
+  title: "Jumping Whale",
   description: "설명부분",
 };
 
